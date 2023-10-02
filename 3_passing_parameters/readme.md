@@ -1,5 +1,3 @@
-**Section 1: Explain the technical concept**
-
 📚 **Kernel Module Parameters**:
 
 In Linux kernel programming, just like how command-line parameters (`argc/argv`) give flexibility in C programs, kernel modules can also receive parameters at insertion time using `module_param` macro. This enhances the module's versatility.
@@ -21,18 +19,19 @@ In Linux kernel programming, just like how command-line parameters (`argc/argv`)
 - **perm**: Determines the permissions of the corresponding entry in sysfs. It can control who can view or modify this parameter once the module is loaded.
 
 For instance, if you have a module parameter like this:
+
 ```
 int my_address = 0;
 module_param(my_address, int, S_IRUGO);
 ```
 You can load the module and set this parameter with:
+
 ```
 insmod my_module.ko my_address=5
 ```
 
 ---
-
-**Section 2: Technical Interview Questions & Answers**
+**Curiousity**
 
 ❓ **Question 1**: What is the purpose of passing parameters to a kernel module?
 
@@ -40,15 +39,14 @@ insmod my_module.ko my_address=5
 
 ❓ **Question 2**: How does the `perm` argument in `module_param` affect the module parameter once it's loaded?
 
-📝 **Answer**: The `perm` argument in `module_param` sets the permissions for the module parameter's entry in sysfs. This determines who can read or modify the parameter. For instance, a permission of `S_IRUGO` allows any user to read the parameter, while a permission of `0` means the parameter won't have a sysfs entry at all.
+📝 **Answer**: The `perm` argument in `module_param` sets the permissions for the module parameter's entry in `sysfs`. This determines who can read or modify the parameter. 
+- For instance, a permission of `S_IRUGO` allows any user to read the parameter, while a permission of `0` means the parameter won't have a sysfs entry at all.
 
 ❓ **Question 3**: If a kernel module has a `charp` parameter type, what kind of data is it expecting?
 
-📝 **Answer**: A `charp` parameter type in a kernel module expects a character pointer, which typically means it's expecting a string.
+📝 **Answer**: A `charp` parameter type in a kernel module expects a `character pointer`, which typically means it's expecting a string.
 
 ---
-
-**Section 3: Simplify the concept**
 
 🌟 **In Simple Words**:
 
@@ -56,7 +54,7 @@ Think of a kitchen blender 🍹. This blender has buttons for different modes li
 
 Similarly, with `module_param`, you have one kernel module, but you can adjust its behavior based on the "settings" (parameters) you provide when you load it. It's like choosing the blending mode and speed before hitting the start button!
 
-**Section 1: Explain the technical concept**
+---
 
 📚 **Passing Parameters to Kernel Modules**:
 
@@ -69,13 +67,21 @@ Similarly, with `module_param`, you have one kernel module, but you can adjust i
 
 2. **Checking Parameter Values of Loaded Modules**:
    The `/sys` filesystem provides a mechanism to access details of modules. To find out the value of a parameter for a loaded module:
+
    ```
    cat /sys/modules/<module_name>/parameters/<parameter_name>
    ```
    This works if the `perm` attribute in the module's `module_param` macro is set to a non-zero value, allowing sysfs visibility.
+ 
+ **Example**
+ ==
+ ![](./Screenshot%20from%202023-10-02%2000-25-42.png)
 
 3. **Passing Parameters to Builtin Modules**:
-   Builtin modules (modules integrated into the kernel) receive parameters through the kernel command line during boot-up. The syntax is:
+   Builtin modules (modules integrated into the kernel) receive parameters through the kernel command line during boot-up. 
+   
+   The syntax is:
+
    ```
    <module_name>.<parameter_name>=value
    ```
@@ -85,7 +91,7 @@ Similarly, with `module_param`, you have one kernel module, but you can adjust i
 
 ---
 
-**Section 2: Technical Interview Questions & Answers**
+**Curiosity**
 
 ❓ **Question 1**: What's the difference between a builtin module and an external module?
 
@@ -97,12 +103,11 @@ Similarly, with `module_param`, you have one kernel module, but you can adjust i
 
 ❓ **Question 3**: Why might you need to pass parameters to a module using `modprobe` instead of `insmod`?
 
-📝 **Answer**: `modprobe` is intelligent and can automatically handle module dependencies. When you load a module that relies on other modules, `modprobe` will load all necessary dependencies first. Passing parameters using `modprobe` allows you to set configurations while also ensuring all dependent modules are properly loaded.
+📝 **Answer**: `modprobe` is intelligent and can automatically handle module dependencies.
+-  When you load a module that relies on other modules, `modprobe` will load all necessary dependencies first. Passing parameters using `modprobe` allows you to set configurations 
+- while also ensuring all dependent modules are properly loaded.
 
 ---
-
-**Section 3: Simplify the concept**
-
 🌟 **In Simple Words**:
 
 Imagine building a toy 🚂 train set. 
@@ -118,7 +123,6 @@ Imagine building a toy 🚂 train set.
 So, with these tools, you have the flexibility to customize your train set (or module) just the way you like! 🚂🛤️
 
 ----
-**Section 1: Explain the technical concept**
 
 📚 **Passing Arguments to Kernel Modules**:
 
@@ -168,8 +172,6 @@ We get the error "Unknown parameter 'World' ignored" in dmesg
 
 ----
 
-**Section 1: Explain the technical concept**
-
 📚 **Handling Quotes in the Shell**:
 
 The shell (like `bash` or `sh`) has specific behaviors when it comes to interpreting quotes. Double quotes (`" "`) allow for variable expansion and command substitution, but they don't prevent word splitting (which is caused by spaces). On the other hand, single quotes (`' '`) prevent both variable expansion and word splitting.
@@ -182,7 +184,7 @@ The inner double quotes are preserved by the outer single quotes. This results i
 
 ---
 
-**Section 2: Technical Interview Questions & Answers**
+**Curiousity**
 
 ❓ **Question 1**: What is the difference between using double quotes and single quotes in the shell?
 
@@ -198,8 +200,6 @@ The inner double quotes are preserved by the outer single quotes. This results i
 
 ---
 
-**Section 3: Simplify the concept**
-
 🌟 **In Simple Words**:
 
 Imagine you're mailing a package 📦. You place an item (let's say a toy) inside a smaller box (representing the double quotes). You then put this smaller box inside a larger box (representing the single quotes) for extra protection.
@@ -208,9 +208,7 @@ In this scenario, the small box (double quotes) makes sure the toy stays intact,
 
 -----
 
-This happens because shell removes double quotes and pass it to insmod, to avoid this add a single quotes over the string.
 
-Run the following command: "insmod argument.ko name='"Linux World"' to pass the whole string
 
 
 
