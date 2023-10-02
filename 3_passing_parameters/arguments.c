@@ -25,5 +25,4 @@ static void test_arguments_exit(void)
 
 module_init(test_arguments_init);
 module_exit(test_arguments_exit);
-MODULE_AUTHOR("JAMAL");
-MODULE_DESCRIPTION("Argument Passing Example");
+
