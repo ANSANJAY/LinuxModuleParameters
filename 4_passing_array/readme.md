@@ -1,4 +1,3 @@
-**Section 1: Explain the technical concept**
 
 📚 **Array Parameters in Kernel Modules**:
 
@@ -29,7 +28,7 @@ sudo insmod parameter_array.ko my_array=1,2,3,4,5
 
 ---
 
-**Section 2: Technical Interview Questions & Answers**
+
 
 ❓ **Question 1**: Why might a kernel module need to accept an array as a parameter rather than a single value?
 
@@ -45,7 +44,6 @@ sudo insmod parameter_array.ko my_array=1,2,3,4,5
 
 ---
 
-**Section 3: Simplify the concept**
 
 🌟 **In Simple Words**:
 
